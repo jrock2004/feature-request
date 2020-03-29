@@ -7,4 +7,8 @@ export default class UserModel extends Model {
   @attr('string') avatarUrl;
   @belongsTo feature;
   @hasMany comments;
+
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
 }

@@ -9,7 +9,7 @@ export default Factory.extend({
     return 0;
   },
   status() {
-    return 0;
+    return faker.random.number({ min: 0, max: 4 });
   },
   createDate() {
     return faker.date.recent();

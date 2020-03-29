@@ -1,0 +1,38 @@
+<div class="flex flex-col mb-6 sm:flex-row sm:justify-between sm:items-center">
+  <div class="mb-4 sm:mb-0">
+    <label for="filter" class="mr-2 font-semibold">Filter</label>
+    <input type="text" class="px-3 py-1 border"/>
+  </div>
+  <div>
+    <label for="sort" class="mr-3 font-semibold sm:mr-2">Sort</label>
+    <select id="sort" name="sort" class="px-2 py-1 text-gray-600 border">
+      <option value="0">New</option>
+      <option value="1">Under Review</option>
+      <option value="2">Planned</option>
+      <option value="3">In Progress</option>
+      <option value="4">Completed</option>
+    </select>
+  </div>
+</div>
+
+{{#each this.model as |feature|}}
+  <div class="relative p-6 mb-6 bg-white border rounded-sm shadow-md">
+    <p>{{feature.feature}}</p>
+
+    {{#if (gt feature.status 0)}}
+      <span class="block mt-1">{{status feature.status}}</span>
+    {{/if}}
+
+    <div class="flex justify-between mt-4">
+      <div class="flex">
+        <img class="w-6 mr-2 rounded-full" src={{feature.user.avatarUrl}} alt={{feature.user.fullName}}>
+        <span class="text-sm text-gray-600">{{feature.user.fullName}}</span>
+      </div>
+      <a href="#" class="text-sm text-orange-700">Comments</a>
+    </div>
+
+    <button class="absolute px-2 text-sm text-white bg-orange-500 rounded-full vote-button" type="button">
+      {{feature.vote}}
+    </button>
+  </div>
+{{/each}}
